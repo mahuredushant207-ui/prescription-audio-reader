@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Prescription Audio Reader</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <div class="logo">
+            💊 Prescription Audio Reader
+        </div>
+
+        <p>
+            Convert your prescription into audio
+        </p>
+
+    </header>
+
+
+    <!-- MAIN -->
+
+    <main class="container">
+
+
+        <!-- HERO -->
+
+        <section class="hero">
+
+            <h1>
+                Prescription Audio Reader
+            </h1>
+
+            <p>
+                Upload your prescription or enter it manually
+                and listen to it in audio form.
+            </p>
+
+        </section>
+
+
+
+        <!-- UPLOAD PRESCRIPTION -->
+
+        <section class="card">
+
+            <h2>📷 Upload Prescription</h2>
+
+            <p class="small-text">
+                Upload a clear JPG, JPEG or PNG image
+                of your prescription.
+            </p>
+
+
+            <input
+                type="file"
+                id="prescriptionImage"
+                accept="image/png,image/jpeg,image/jpg"
+            >
+
+
+            <div
+                id="imagePreviewContainer"
+                class="image-preview-container"
+            >
+
+                <img
+                    id="imagePreview"
+                    alt="Prescription Preview"
+                >
+
+            </div>
+
+
+            <button
+                class="main-button"
+                onclick="extractText()"
+            >
+                🔍 Read Prescription Image
+            </button>
+
+
+            <div
+                id="ocrStatus"
+                class="ocr-status"
+            >
+            </div>
+
+        </section>
+
+
+
+        <!-- MANUAL INPUT -->
+
+        <section class="card">
+
+            <h2>📝 Prescription Details</h2>
+
+
+            <label for="patientName">
+                Patient Name
+            </label>
+
+            <input
+                type="text"
+                id="patientName"
+                placeholder="Enter patient name"
+            >
+
+
+            <label for="prescription">
+                Prescription Text
+            </label>
+
+            <textarea
+                id="prescription"
+                rows="10"
+                placeholder="Enter prescription text or extract it from an image..."
+            ></textarea>
+
+
+            <button
+                class="main-button"
+                onclick="generateAudio()"
+            >
+                🔊 Convert to Audio
+            </button>
+
+        </section>
+
+
+
+        <!-- AUDIO CONTROLS -->
+
+        <section class="card">
+
+            <h2>🎧 Audio Controls</h2>
+
+
+            <div class="control">
+
+                <label for="voice">
+                    Select Voice
+                </label>
+
+                <select id="voice">
+
+                    <option>
+                        Loading voices...
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="control">
+
+                <label for="speed">
+
+                    Speech Speed:
+
+                    <span id="speedValue">
+                        1
+                    </span>
+
+                </label>
+
+
+                <input
+                    type="range"
+                    id="speed"
+                    min="0.5"
+                    max="2"
+                    step="0.1"
+                    value="1"
+                >
+
+            </div>
+
+
+            <div class="buttons">
+
+                <button onclick="playAudio()">
+                    ▶ Play
+                </button>
+
+
+                <button onclick="pauseAudio()">
+                    ⏸ Pause
+                </button>
+
+
+                <button onclick="resumeAudio()">
+                    🔄 Resume
+                </button>
+
+
+                <button onclick="stopAudio()">
+                    ⏹ Stop
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- PREVIEW -->
+
+        <section class="card">
+
+            <h2>
+                📄 Prescription Preview
+            </h2>
+
+
+            <div
+                id="preview"
+                class="preview"
+            >
+
+                Your prescription will appear here.
+
+            </div>
+
+        </section>
+
+
+
+        <!-- MEDICAL NOTICE -->
+
+        <section class="warning">
+
+            <h3>
+                ⚠ Medical Information
+            </h3>
+
+            <p>
+                This website only reads the information
+                provided in the prescription. It does not
+                diagnose medical conditions or change
+                prescribed medicines.
+            </p>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            Prescription Audio Reader
+        </p>
+
+        <p>
+            Made by
+            <strong>
+                Khushbu Dhanjani
+            </strong>
+        </p>
+
+    </footer>
+
+
+
+    <!-- TESSERACT OCR LIBRARY -->
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js">
+    </script>
+
+
+    <!-- OUR JAVASCRIPT -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
