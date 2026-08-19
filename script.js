@@ -52,41 +52,38 @@ const ocrStatus =
    IMAGE PREVIEW
 ========================= */
 
-imageInput.addEventListener(
-    "change",
-    function () {
+imageInput.addEventListener("change", function () {
 
-        const file =
-            imageInput.files[0];
+    const file = imageInput.files[0];
 
-
-        if (!file) {
-
-            return;
-        }
-
-
-        const reader =
-            new FileReader();
-
-
-        reader.onload =
-            function (event) {
-
-                imagePreview.src =
-                    event.target.result;
-
-                imagePreviewContainer.style.display =
-                    "block";
-            };
-
-
-        reader.readAsDataURL(file);
-
+    if (!file) {
+        return;
     }
-);
 
+    // Check image type
+    if (!file.type.startsWith("image/")) {
 
+        alert("Please select a JPG, JPEG or PNG image.");
+
+        imageInput.value = "";
+
+        return;
+    }
+
+    // Create temporary URL for selected image
+    const imageURL = URL.createObjectURL(file);
+
+    imagePreview.src = imageURL;
+
+    imagePreview.style.display = "block";
+
+    imagePreviewContainer.style.display = "block";
+
+    // Update status
+    ocrStatus.textContent =
+        "✅ Prescription image selected successfully.";
+
+});
 
 /* =========================
    LOAD VOICES
